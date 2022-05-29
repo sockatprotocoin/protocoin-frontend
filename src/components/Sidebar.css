@@ -1,0 +1,57 @@
+.header {
+    background-color: white;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0.6rem 1.2rem 0.6rem 1.2rem;
+}
+
+svg {
+    fill: darkgrey;
+    margin-top: 0.2em;
+}
+
+.app-name {
+    font-size: 2em;
+    margin-left: 1em;
+}
+
+.nav-menu {
+    background-color: white;
+    width: 200px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    left: -200px;
+    transition: 350ms;
+}
+
+.nav-menu.active {
+    left: 0;
+    transition: 350ms;
+}
+
+.nav-item {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    list-style: none;
+    margin: 0.8em;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 2px 6px, rgb(0 0 0 / 10%) 0px 4px 16px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+}
+
+.nav-menu-items {
+    width: 100%;
+    padding: 0 5% 0 5%;
+}

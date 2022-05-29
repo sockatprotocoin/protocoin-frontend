@@ -1,0 +1,17 @@
+.main-content {
+    padding: 50px 50px 50px 50px;
+    width: 100vw - 400px;
+    transition: 350ms;
+}
+
+h1 {
+    margin: 0;
+}
+
+.narrow {
+    margin-left: 200px;
+}
+
+.wide {
+    width: 100vw - 200px;
+}
