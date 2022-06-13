@@ -21,6 +21,7 @@ class ContactsList extends Component {
         this.setState({ ...this.state, isFetching: true });
         this.api.getContacts(1)
             .then(response => {
+                console.log(response)
                 this.setState({ contacts: response.data, isFetching: false })
             })
             .catch(err => {
@@ -31,7 +32,7 @@ class ContactsList extends Component {
 
     render() {
         const deleteContact = (e, id) => {
-            this.api.deleteContact(id).then(() => {
+            this.api.deleteContact(1,id).then(() => {
                 this.setState({
                     ...this.state,
                     contacts: this.state.contacts.filter(contact => contact.id != id)
@@ -39,20 +40,22 @@ class ContactsList extends Component {
             }).catch(err => console.log(err))
         }
 
-        return (
-            <div className="tile">
-                <h1>Contacts list</h1>
-                <ul>
-                    {this.state.contacts.map(contact =>
-                        <ol key={contact.user.id}>
-                            {contact.user.username + " "}
-                            {contact.user.email}
-                            <button onClick={(e) => deleteContact(e, contact.id)}>delete</button>
-                        </ol>
-                    )}
-                </ul>
-            </div>
-        )
+        if(!this.state.isFetching){
+            return (
+                <div className="tile">
+                    <h1>Contacts list</h1>
+                    <ul>
+                        {this.state.contacts.map(contact =>
+                            <ol key={contact.id}>
+                                {contact.username + " "}
+                                {contact.email}
+                                <button onClick={(e) => deleteContact(e, contact.id)}>delete</button>
+                            </ol>
+                        )}
+                    </ul>
+                </div>
+            )
+        }
     }
 }
 

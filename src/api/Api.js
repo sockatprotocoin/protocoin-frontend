@@ -32,10 +32,10 @@ export default class Api {
     }
 
     getContacts = (id) => {
-        return this.init().get("contacts/" + id)
+        return this.init().get("users/"+id+"/contacts")
     }
 
-    deleteContact = (id) => {
-        return this.init().delete("contacts/" + id)
+    deleteContact = (idUser, idContact) => {
+        return this.init().delete("users/"+idUser+"/contacts/"+idContact)
     }
 }  
