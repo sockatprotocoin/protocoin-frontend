@@ -38,4 +38,8 @@ export default class Api {
     deleteContact = (idUser, idContact) => {
         return this.init().delete("users/"+idUser+"/contacts/"+idContact)
     }
+
+    getBlockchain = () => {
+        return this.init().get("blockchain")
+    }
 }  

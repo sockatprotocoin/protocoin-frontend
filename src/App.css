@@ -4,3 +4,8 @@ body {
   background-color: whitesmoke;
   font-family: 'Noto Sans Mono', monospace;
 }
+
+.tile {
+  padding: 30px;
+  background-color: white;
+}

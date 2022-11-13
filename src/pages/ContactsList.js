@@ -21,7 +21,7 @@ class ContactsList extends Component {
         this.setState({ ...this.state, isFetching: true });
         this.api.getContacts(1)
             .then(response => {
-                console.log(response)
+                console.log(response.data)
                 this.setState({ contacts: response.data, isFetching: false })
             })
             .catch(err => {
