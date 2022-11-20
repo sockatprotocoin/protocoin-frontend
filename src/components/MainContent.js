@@ -4,6 +4,7 @@ import Blockchain from '../pages/Blockchain';
 import Contacts from '../pages/Contacts';
 import { useSelector } from 'react-redux';
 import './MainContent.css'
+import NewTransaction from '../pages/NewTransaction';
 
 function MainContent() {
     const sidebarOpened = useSelector((state) => state.sidebarOpened)
@@ -13,6 +14,7 @@ function MainContent() {
             <Routes>
                 <Route path='/blockchain' element={<Blockchain />} />
                 <Route path='/contacts' element={<Contacts />} />
+                <Route path='/transaction' element={<NewTransaction />} />
             </Routes>
         </div>
     )
