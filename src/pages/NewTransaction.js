@@ -11,9 +11,8 @@ class NewTransaction extends Component {
             contacts: [],
             userId: 1,
             fee: 0,
-            transactions : {}
+            transactions : []
         };
-        this.state.transactions[0] = {receiverWalletAddress: '', amount: 0}
     }
 
     componentDidMount() {
@@ -24,7 +23,11 @@ class NewTransaction extends Component {
         this.setState({ ...this.state, isFetching: true });
         this.api.getContacts(1)
             .then(response => {
-                this.setState({ contacts: response.data, isFetching: false })
+                this.setState({
+                    contacts: response.data,
+                    transactions: [{receiverWalletAddress: response.data[0].address}],
+                    isFetching: false 
+                })
             })
             .catch(err => {
                 console.log(err);
@@ -32,11 +35,18 @@ class NewTransaction extends Component {
             })
     }
 
+    addTransaction = () => {
+        this.setState({
+            ...this.state,
+            transactions: [...this.state.transactions, {receiverWalletAddress: this.state.contacts[0].address}]
+        })
+    }
+
     handleSubmit = event => {
         this.sendTransaction()
-      }
+    }
 
-    sendTransaction(){
+    sendTransaction() {
         this.api
         .postTransaction(this.state.userId, this.state.fee, this.state.transactions)
         .then(response => {
@@ -47,40 +57,58 @@ class NewTransaction extends Component {
         })
     }
 
+    updateTransactionReceiverWalletAddress = (event, transactionIndex) => {
+        let transactions = this.state.transactions;
+        let transaction = transactions[transactionIndex];
+        transaction.receiverWalletAddress = event.target.value;
+        transactions[transactionIndex] = transaction;
+        this.setState({...this.state, transactions: transactions});
+    }
+
+    updateTransactionAmount =  (event, transactionIndex) => {
+        let transactions = this.state.transactions;
+        let transaction = transactions[transactionIndex];
+        transaction.amount = event.target.value;
+        transactions[transactionIndex] = transaction;
+        this.setState({...this.state, transactions: transactions});
+    }
+    
+    deleteTransaction = (transactionIndex) => {
+        let transactions = this.state.transactions;
+        transactions.splice(transactionIndex, 1)
+        this.setState({
+            ...this.state,
+            transactions: transactions
+        });
+    }
+
+    updateFee = (e) => {
+        this.setState({...this.state, fee: e.target.value});
+    }
+
     getTransactionsInput = () => {
         return (
             Object.entries(this.state.transactions).map((entry) => 
-                <div>
-                    <label>
-                        Recipient:
-                        <select value={this.state.transactions[entry[0]].receiverWalletAddress} 
-                            onChange={(e)=> {
-                                let key = entry[0];
-                                let transaction = entry[1];
-                                let transactions = this.state.transactions;
-                                transaction.receiverWalletAddress = e.target.value;
-                                transactions[key] = transaction;
-                                this.setState({...this.state,transactions: transactions});
-                            }}>
-                        {this.state.contacts.map(contact =>
-                            <option value={contact.address}>{contact.username + " " + contact.email}</option>
-                        )}
-                        </select>
-                    </label>
-                    <label>
-                        Amount:
-                        <input type="text" value={this.state.transactions[entry[0]].amount} 
-                            onChange={(e)=> {
-                                let key = entry[0];
-                                let transaction = entry[1];
-                                let transactions = this.state.transactions;
-                                transaction.amount = e.target.value;
-                                transactions[key] = transaction;
-                                this.setState({...this.state,transactions: transactions});
-                            }}
+                <tr>
+                    <td>
+                        <select className='form-element'
+                            value={this.state.transactions[entry[0]].receiverWalletAddress} 
+                            onChange={(event) => this.updateTransactionReceiverWalletAddress(event, entry[0])}
+                            >
+                            {this.state.contacts.map(contact =>
+                                <option style={{fontFamily: 'Noto Sans Mono, monospace'}} value={contact.address}>{contact.username}</option>
+                            )}
+                            </select>
+                    </td>
+                    <td>
+                        <input placeholder='Amount' className='monetary-input form-element' type="number" value={this.state.transactions[entry[0]].amount} 
+                            onChange={(event) => this.updateTransactionAmount(event, entry[0])}
                         />
-                    </label>
-                </div>        
+                    </td>
+                    <td>
+                        <button className='delete button form-element' type='button' onClick={(event) => this.deleteTransaction(entry[0])}>Delete</button>
+                    </td>
+                </tr>        
             )
         )
     }
@@ -88,29 +116,37 @@ class NewTransaction extends Component {
     render() {
         if(!this.state.isFetching){
             return (
-                <div className="tile">
+                <div className="container">
                     <h1>New Transaction</h1>
                     <form onSubmit={this.handleSubmit}>
-                        <this.getTransactionsInput/>
-                        <button type="button" onClick={(e)=>{
-                            let transactionsCount = Object.keys(this.state.transactions).length;
-                            console.log(transactionsCount)
-                            let transactions = this.state.transactions;
-                            transactions[transactionsCount] = {address:'', amount: 0}
-                            this.setState({...this.state,transactions:transactions})
-                            console.log(this.state.transactions)
-                            }}>+</button>
-                        <label>
-                            Fee:
-                            <input type="text" value={this.state.fee} onChange={
-                                (e)=>{
-                                    this.setState({...this.state, fee: e.target.value});
-                                    console.log(this.state)
-                                }
-                        
-                            }/>
-                        </label>
-                        <input type="submit" value="Submit" />
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Recipient</th>
+                                    <th>Amount</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <this.getTransactionsInput/>
+                            <tr>
+                                <td>Mining fee</td>
+                                <td>
+                                    <input type="number" className='monetary-input form-element' value={this.state.fee} onChange={this.updateFee}/>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button className='button add form-element' type="button" onClick={this.addTransaction}>+</button>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <input className='button confirm form-element' type="submit" value="Submit" />
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </form>
                 </div>
             )
