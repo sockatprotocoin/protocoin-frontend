@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Api from '../api/Api'
-import './ContactList.css'
 
 class ContactsList extends Component {
     api = new Api();
@@ -42,7 +41,7 @@ class ContactsList extends Component {
 
         if(!this.state.isFetching){
             return (
-                <div className="tile">
+                <div className="container">
                     <h1>Contacts list</h1>
                     <ul>
                         {this.state.contacts.map(contact =>

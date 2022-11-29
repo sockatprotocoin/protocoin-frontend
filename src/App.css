@@ -1,11 +1,101 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap');
+:root {
+  --blue:#0866C4;
+  --green: #4EBCA2;
+  --pink: #E36497;
+  --grey: #F5F5F5;
+  --delete: #F75F6A;
+}
 
-body {
-  background-color: whitesmoke;
+* {
   font-family: 'Noto Sans Mono', monospace;
 }
 
-.tile {
+body {
+  background-color: var(--grey);
+}
+
+.container {
   padding: 30px;
   background-color: white;
+  height: 100%;
+  border-radius: 4px;
+}
+
+h1 {
+  padding-bottom: 40px;
+}
+
+table {
+  padding: 10px;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+th {
+  background-color: var(--blue);
+  color: white;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 100;
+  padding: 10px;
+}
+
+td {
+  padding: 1rem 1.5rem;
+  text-align: center;
+}
+
+tr {
+  border-bottom: 1px solid var(--grey);
+}
+
+tr:last-child {
+  border-bottom: none;
+}
+
+.monetary-input {
+  text-align: end;
+}
+
+.form-element {
+  padding: 0 10px 0 10px;
+  line-height: 140%;
+  font-size: 1em;
+  padding: 5px 5px;
+  border-radius: 5px;
+  border-width: 1px;
+}
+
+.button {
+  font-weight: 900;
+  border-width: 2px;
+  border-style: solid;
+  background-color: white;
+  vertical-align: middle;
+  padding: 3px 15px 3px 15px;
+}
+
+.delete {
+  background-color: var(--delete);
+  border-color: var(--delete);
+  color: white;
+}
+
+.add {
+  background-color: var(--pink);
+  border-color: var(--pink);
+  color: white;
+  padding: 4px 6px 4px 6px;
+  font-size: 2em;
+  line-height: 70%;
+}
+
+.confirm {
+  background-color: var(--green);
+  border-color: var(--green);
+  color: white;
+  float: right;
+  margin-right: 30px;
 }

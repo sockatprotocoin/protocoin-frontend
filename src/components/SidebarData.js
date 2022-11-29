@@ -6,5 +6,9 @@ export const SidebarData = [
     {
         title: 'Contacts',
         path: '/contacts'
+    },
+    {
+        title: 'New transaction',
+        path: '/transaction'
     }
 ]

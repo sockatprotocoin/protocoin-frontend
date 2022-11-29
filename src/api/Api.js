@@ -28,18 +28,23 @@ export default class Api {
     };
 
     getUser = (id) => {
-        return this.init().get("users/" + id)
+        return this.init().get("user/" + id)
     }
 
     getContacts = (id) => {
-        return this.init().get("users/"+id+"/contacts")
+        return this.init().get("user/"+id+"/contact")
     }
 
     deleteContact = (idUser, idContact) => {
-        return this.init().delete("users/"+idUser+"/contacts/"+idContact)
+        return this.init().delete("user/"+idUser+"/contact/"+idContact)
     }
 
     getBlockchain = () => {
         return this.init().get("blockchain")
+    }
+
+    postTransaction = (idUser,fee,transactions) => {
+        let transactionsValues = Object.values(transactions);
+        return this.init().post('transaction/'+ idUser, transactionsValues)
     }
 }  

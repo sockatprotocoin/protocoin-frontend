@@ -33,7 +33,7 @@ class Blockchain extends Component {
     render() {
         if (!this.state.isFetching) {
             return (
-            <div className="tile">
+            <div className="container">
                 <h1>Blockchain</h1>
                 <div className='blockchain'>
                     {this.state.blocks.map(block =>
