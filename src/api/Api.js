@@ -31,6 +31,10 @@ export default class Api {
         return this.init().get("user/" + id)
     }
 
+    getUsersFiltered = (stringFilter) => {
+        return this.init().get("user?stringFilter=" + stringFilter)
+    }
+
     getContacts = (id) => {
         return this.init().get("user/"+id+"/contact")
     }

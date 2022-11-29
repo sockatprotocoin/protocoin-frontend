@@ -16,10 +16,16 @@ body {
 }
 
 .container {
+  margin: 50px;
   padding: 30px;
   background-color: white;
-  height: 100%;
+  width: 100%;
   border-radius: 4px;
+}
+
+.container-50 {
+  max-width: calc(50% - 100px - 60px);
+  min-width: calc(50% - 100px - 60px);
 }
 
 h1 {
