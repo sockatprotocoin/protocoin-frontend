@@ -51,4 +51,8 @@ export default class Api {
         let transactionsValues = Object.values(transactions);
         return this.init().post('transaction/'+ idUser, transactionsValues)
     }
+
+    addUser = (user) => {
+        return this.init().post('user/', user)
+    }
 }  
