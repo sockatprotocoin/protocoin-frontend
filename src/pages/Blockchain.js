@@ -36,8 +36,8 @@ class Blockchain extends Component {
             <div className="container">
                 <h1>Blockchain</h1>
                 <div className='blockchain'>
-                    {this.state.blocks.map(block =>
-                        <div className='block'>
+                    {this.state.blocks.map((block, blockIndex)  =>
+                        <div key={blockIndex} className='block'>
                             <div className='blockHash tooltip'>{block.blockHash}
                                 <span className='tooltiptext'>block hash</span>
                                 </div>
@@ -49,8 +49,8 @@ class Blockchain extends Component {
                                 {block.header.nonce}
                             </div>
                             <div className='transactions'>
-                                {block.blockTransactions.map(transaction =>
-                                    <div className='transaction'>
+                                {block.blockTransactions.map((transaction, transactionIndex) =>
+                                    <div key={transactionIndex} className='transaction'>
                                         {transaction.transactionInputs.map(transactionInput =>
                                             <div className='transactionInput'>
                                                 {transactionInput.txid}
@@ -58,8 +58,8 @@ class Blockchain extends Component {
                                                 {transactionInput.scriptSignature}
                                             </div>
                                         )}
-                                        {transaction.transactionOutputs.map(transactionOutput =>
-                                            <div className='transactionOutput'>
+                                        {transaction.transactionOutputs.map((transactionOutput, outputIndex) =>
+                                            <div key={outputIndex} className='transactionOutput'>
                                                 <div className='amount tooltip'>{transactionOutput.amount}
                                                     <span className='tooltiptext'>amount: {parseInt(transactionOutput.amount, 16) / 100000000}🥫</span>
                                                 </div>

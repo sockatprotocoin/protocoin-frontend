@@ -1,4 +1,5 @@
 import * as axios from "axios";
+import {getCookie} from "../util/cookieUtil";
 
 export default class Api {
     constructor() {
@@ -8,43 +9,55 @@ export default class Api {
     }
 
     init = () => {
-        //   this.api_token = getCookie("ACCESS_TOKEN");
+        this.api_token = getCookie("access_token");
 
         let headers = {
-            Accept: "application/json",
+            Accept: "application/json"
         };
 
-        //   if (this.api_token) {
-        //     headers.Authorization = `Bearer ${this.api_token}`;
-        //   }
+        if (this.api_token) {
+            headers.Authorization = `Bearer ${this.api_token}`;
+        }
 
         this.client = axios.create({
             baseURL: this.api_url,
             timeout: 31000,
-            headers: headers,
+            headers: headers
         });
 
         return this.client;
     };
 
+    login = (user) => {
+        return this.init().post("login?username=" + user.username +"&password=" + user.password)
+    }
+
     getUser = (id) => {
         return this.init().get("user/" + id)
     }
 
-    getContacts = (id) => {
-        return this.init().get("user/"+id+"/contact")
+    getUsersFiltered = (stringFilter) => {
+        return this.init().get("user?stringFilter=" + stringFilter)
     }
 
-    deleteContact = (idUser, idContact) => {
-        return this.init().delete("user/"+idUser+"/contact/"+idContact)
+    getContacts = () => {
+        return this.init().get("user/contact")
+    }
+
+    deleteContact = (idContact) => {
+        return this.init().delete("user/contact/" + idContact)
     }
 
     getBlockchain = () => {
         return this.init().get("blockchain")
     }
 
-    postTransaction = (idUser,fee,transactions) => {
+    postTransaction = (fee, transactions) => {
         let transactionsValues = Object.values(transactions);
-        return this.init().post('transaction/'+ idUser, transactionsValues)
+        return this.init().post('transaction', transactionsValues)
     }
-}  
+
+    addUser = (user) => {
+        return this.init().post('user', user)
+    }
+}

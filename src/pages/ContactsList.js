@@ -18,9 +18,8 @@ class ContactsList extends Component {
 
     fetchContacts() {
         this.setState({ ...this.state, isFetching: true });
-        this.api.getContacts(1)
+        this.api.getContacts()
             .then(response => {
-                console.log(response.data)
                 this.setState({ contacts: response.data, isFetching: false })
             })
             .catch(err => {
@@ -31,7 +30,7 @@ class ContactsList extends Component {
 
     render() {
         const deleteContact = (e, id) => {
-            this.api.deleteContact(1,id).then(() => {
+            this.api.deleteContact(id).then(() => {
                 this.setState({
                     ...this.state,
                     contacts: this.state.contacts.filter(contact => contact.id != id)
@@ -41,17 +40,25 @@ class ContactsList extends Component {
 
         if(!this.state.isFetching){
             return (
-                <div className="container">
+                <div className="container contacts-container">
                     <h1>Contacts list</h1>
-                    <ul>
-                        {this.state.contacts.map(contact =>
-                            <ol key={contact.id}>
-                                {contact.username + " "}
-                                {contact.email}
-                                <button onClick={(e) => deleteContact(e, contact.id)}>delete</button>
-                            </ol>
-                        )}
-                    </ul>
+                    <table>
+                        <tbody>
+                            {this.state.contacts.map(contact =>
+                                <tr key={contact.id}>
+                                    <td>
+                                        {contact.username + " "}
+                                    </td>
+                                    <td>
+                                        {contact.email}
+                                    </td>
+                                    <td>
+                                        <button className='delete' onClick={(e) => deleteContact(e, contact.id)}>delete</button>
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
                 </div>
             )
         }
