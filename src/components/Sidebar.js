@@ -3,13 +3,21 @@ import { Link } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 import { useSelector, useDispatch } from 'react-redux';
 import './Sidebar.css'
+import { setCookie } from '../util/cookieUtil';
 
 function Sidebar() {
     const sidebarOpened = useSelector((state) => state.sidebarOpened)
+    const loggedIn = useSelector((state) => state.loggedIn)
     const dispatch = useDispatch();
     const toggleSidebar = () => {
         dispatch({ type: 'SIDEBAR' })
     };
+
+    const logout = () => {
+        setCookie('access_token', '')
+        setCookie('refresh_token', '')
+        dispatch({ type: 'LOGOUT' })
+    }
 
     return (
         <>
@@ -23,7 +31,15 @@ function Sidebar() {
             </div>
             <div className={sidebarOpened ? 'nav-menu active' : 'nav-menu'}>
                 <ul className='nav-menu-items'>
+                    {loggedIn ? "" : 
+                        <li key="login" className='nav-item'>
+                            <Link to="/login"><span>Login</span></Link>
+                        </li> 
+                    }
                     {SidebarData.map((item, index) => {
+                        if (item.access === 'loggedIn' && !loggedIn) {
+                            return
+                        }
                         return (
                             <li key={index} className='nav-item'>
                                 <Link to={item.path}>
@@ -32,6 +48,11 @@ function Sidebar() {
                             </li>
                         )
                     })}
+                    {loggedIn ?
+                        <li key="login" className='nav-item' onClick={logout}>
+                            <Link to="/login"><span>Log out</span></Link>
+                        </li> : ""
+                    }
                 </ul>
             </div>
         </>

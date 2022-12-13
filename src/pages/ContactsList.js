@@ -18,7 +18,7 @@ class ContactsList extends Component {
 
     fetchContacts() {
         this.setState({ ...this.state, isFetching: true });
-        this.api.getContacts(1)
+        this.api.getContacts()
             .then(response => {
                 this.setState({ contacts: response.data, isFetching: false })
             })
@@ -30,7 +30,7 @@ class ContactsList extends Component {
 
     render() {
         const deleteContact = (e, id) => {
-            this.api.deleteContact(1,id).then(() => {
+            this.api.deleteContact(id).then(() => {
                 this.setState({
                     ...this.state,
                     contacts: this.state.contacts.filter(contact => contact.id != id)

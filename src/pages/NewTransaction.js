@@ -21,7 +21,7 @@ class NewTransaction extends Component {
 
     fetchContacts() {
         this.setState({ ...this.state, isFetching: true });
-        this.api.getContacts(1)
+        this.api.getContacts()
             .then(response => {
                 this.setState({
                     contacts: response.data,
@@ -48,7 +48,7 @@ class NewTransaction extends Component {
 
     sendTransaction() {
         this.api
-        .postTransaction(this.state.userId, this.state.fee, this.state.transactions)
+        .postTransaction(this.state.fee, this.state.transactions)
         .then(response => {
             console.log(response.data)
         })

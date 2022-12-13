@@ -1,14 +1,17 @@
 export const SidebarData = [
     {
         title: 'Blockchain',
-        path: '/blockchain'
+        path: '/blockchain',
+        access: 'all'
     },
     {
         title: 'Contacts',
-        path: '/contacts'
+        path: '/contacts',
+        access: 'loggedIn'
     },
     {
         title: 'New transaction',
-        path: '/transaction'
+        path: '/transaction',
+        access: 'loggedIn'
     }
 ]

@@ -1,71 +1,57 @@
-import { Component } from "react";
 import Api from "../api/Api";
+import {setCookie} from "../util/cookieUtil";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 
-class Login extends Component{
-    api = new Api()
-
-    constructor(props){
-        super(props);
-        this.state = {
-            user: {
-                username: '',
-                password: ''
-            }
-        }
+function Login() {
+    const api = new Api()
+    const user = {
+        username: '',
+        password: ''
     }
+    const dispatch = useDispatch();
+    const toggleLogin = () => {
+        dispatch({ type: 'LOGIN' })
+    };
+    const navigate = useNavigate();
 
-    handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault()
 
-        const user = this.state.user
-        let response
-
-        this.api.login(user)
-            .then(res => {
-                response = res
-                return res.json()
-            })
-            .then(
-                (data) => {
-                    if(response.status === 200){
-                        if(data.token) {
-                            //HELP
-                        }
+        api.login(user)
+            .then(response => {
+                    if (response.status === 403){
+                        console.log('login unsuccessful')
+                    } else {
+                        setCookie('access_token', response.headers['access_token'])
+                        setCookie('refresh_token', response.headers['refresh_token'])
+                        toggleLogin()
+                        navigate('/contacts')
                     }
                 },
                 (error) => {
-                    //HELP
+                    console.log("hjaelp")
                 }
             )
     }
 
-    handleChange = (event) => {
+    const handleChange = (event) => {
         const {name, value} = event.target
-        const  user = {...this.state.user}
         user[name] = value
-
-        this.setState({
-            user:user
-        })
-
-       // console.log(this.state.user)
     }
 
-    render(){
-
-        return(
-            <div className="container">
-                <h2>Login</h2>
-                <form method="post" onSubmit={this.handleSubmit}>
-                    <label>Username:</label>
-                    <input name="username" type="text" onChange={this.handleChange}/>
-                    <label>Password:</label>
-                    <input name="password" type="password" onChange={this.handleChange}/>
-                    <input className='button confirm form-element' type="submit" value="Login" />
-                </form>
-            </div>
-        )
-    }
+    return(
+        <div className="container">
+            <h2>Login</h2>
+            <form method="post" onSubmit={handleSubmit}>
+                <label>Username:</label>
+                <input name="username" type="text" onChange={handleChange}/>
+                <label>Password:</label>
+                <input name="password" type="password" onChange={handleChange}/>
+                <input className='button confirm form-element' type="submit" value="Login" />
+            </form>
+        </div>
+    )
 }
 
 export default Login
