@@ -53,11 +53,15 @@ export default class Api {
     }
 
     postTransaction = (fee, transactions) => {
-        let transactionsValues = Object.values(transactions);
+        let transactionsValues = Object.values(transactions)
         return this.init().post('transaction', transactionsValues)
     }
 
     addUser = (user) => {
         return this.init().post('user', user)
+    }
+
+    inviteUser = (userId) => {
+        return this.init().post('invitation/invite/'+userId)
     }
 }

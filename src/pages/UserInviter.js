@@ -9,7 +9,8 @@ class UserInviter extends Component {
         this.state = {
             searchText: undefined,
             timeout: undefined,
-            searchedUsers: []
+            searchedUsers: [],
+            invitedUsersIds: []
         }
     }
 
@@ -46,7 +47,17 @@ class UserInviter extends Component {
     }
 
     inviteUser = (event, userId) => {
-        // not implemented
+        const alreadyInvited = this.state.invitedUsersIds;
+        this.api
+        .inviteUser(userId)
+        .then(response => {
+            this.setState({...this.state, invitedUsersIds: alreadyInvited.push(userId)})
+            console.log(this.state)
+            console.log(response.data)
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }
 
     render() {

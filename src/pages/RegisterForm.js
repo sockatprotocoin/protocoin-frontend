@@ -11,7 +11,8 @@ class RegisterForm extends Component {
                 username: '',
                 email: '',
                 password: ''
-            }
+            },
+            registered: false
         }
     }
 
@@ -20,16 +21,12 @@ class RegisterForm extends Component {
 
         let user = this.state.user
         let{username,email,password} = user
-        let response
 
         this.api.addUser(user)
-            .then(res => {
-                response = res
-                return res.json()
-            })
-            .then(
-                (data) => {
+            .then(response => {
                     if(response.status === 200){
+                        console.log("200")
+                        this.setState({...this.state.user, registered : true})
                         //HELP
                     }
                 },
@@ -53,22 +50,31 @@ class RegisterForm extends Component {
 
     render(){
 
-        return(
-            <div className="container">
-                <h2>Register</h2>
-                <form method="post" onSubmit={this.handleSubmit}>
-                    <label>Username:</label>
-                    <input name="username" type="text" onChange={this.handleChange}/>
-                    <label>Email:</label>
-                    <input name="email" type="text" onChange={this.handleChange}/>
-                    <label>Password:</label>
-                    <input name="password" type="password" onChange={this.handleChange}/>
-                    <label>Confirm password:</label>
-                    <input name="password2" type="password" />
-                    <input className='button confirm form-element' type="submit" value="Register" />
-                </form>
-            </div>
-        )
+        if(this.state.registered === false)
+            return(
+                <div className="container">
+                    <h2>Register</h2>
+                    <form method="post" onSubmit={this.handleSubmit}>
+                        <label>Username:</label>
+                        <input name="username" type="text" onChange={this.handleChange}/>
+                        <label>Email:</label>
+                        <input name="email" type="text" onChange={this.handleChange}/>
+                        <label>Password:</label>
+                        <input name="password" type="password" onChange={this.handleChange}/>
+                        <label>Confirm password:</label>
+                        <input name="password2" type="password" />
+                        <input className='button confirm form-element' type="submit" value="Register" />
+                    </form>
+                </div>
+            )
+        else 
+            return(
+                <div className="container">
+                    <h2>{this.state.user.username} successfully registered</h2>
+                    <h3>You can now log in!</h3>
+                </div>
+            )
+
     }
 }
 
