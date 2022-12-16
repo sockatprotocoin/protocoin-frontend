@@ -42,10 +42,8 @@ class RegisterForm extends Component {
         user[name] = value
 
         this.setState({
-            user:user
+            user: user
         })
-
-       // console.log(this.state.user)
     }
 
     render(){
@@ -55,15 +53,15 @@ class RegisterForm extends Component {
                 <div className="container">
                     <h2>Register</h2>
                     <form method="post" onSubmit={this.handleSubmit}>
-                        <label>Username:</label>
-                        <input name="username" type="text" onChange={this.handleChange}/>
-                        <label>Email:</label>
-                        <input name="email" type="text" onChange={this.handleChange}/>
-                        <label>Password:</label>
-                        <input name="password" type="password" onChange={this.handleChange}/>
-                        <label>Confirm password:</label>
-                        <input name="password2" type="password" />
-                        <input className='button confirm form-element' type="submit" value="Register" />
+                        <label>Username:</label><br></br>
+                        <input className='form-element' name="username" type="text" onChange={this.handleChange}/><br></br>
+                        <label>Email:</label><br></br>
+                        <input className='form-element' nname="email" type="text" onChange={this.handleChange}/><br></br>
+                        <label>Password:</label><br></br>
+                        <input className='form-element' name="password" type="password" onChange={this.handleChange}/><br></br>
+                        <label>Confirm password:</label><br></br>
+                        <input className='form-element' name="password2" type="password" /><br></br>
+                        <input className='button login form-element' type="submit" value="Register" />
                     </form>
                 </div>
             )

@@ -64,4 +64,12 @@ export default class Api {
     inviteUser = (userId) => {
         return this.init().post('invitation/invite/'+userId)
     }
+
+    getInvitations = () => {
+        return this.init().get('invitation/received')
+    }
+
+    acceptInvitation = (invitationId) => {
+        return this.init().get('invitation/' + invitationId + '/accept')
+    }
 }

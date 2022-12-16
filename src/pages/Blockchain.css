@@ -4,19 +4,22 @@
     flex-wrap: nowrap;
     overflow-x: auto;
 }
+
 .block {
     word-break: break-all;
     min-width: 400px;
     background-color: var(--blue);
     color: white;
     padding: 10px;
-    margin-right: 40px;
+    margin: 40px 40px 0 0;
     display: inline-block;
 }
+
 .tooltip {
     position: relative;
     display: inline-block;
 }
+
 .tooltip .tooltiptext {
     visibility: hidden;
     background-color: black;
@@ -29,6 +32,15 @@
     left: 50%;
     white-space: nowrap;
 }
+
 .tooltip:hover .tooltiptext {
     visibility: visible;
+}
+
+h1 {
+    padding-bottom: 0;
+}
+
+.highlight:hover {
+    background-color: cornflowerblue;
 }

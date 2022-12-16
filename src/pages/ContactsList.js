@@ -40,7 +40,7 @@ class ContactsList extends Component {
 
         if(!this.state.isFetching){
             return (
-                <div className="container contacts-container">
+                <div className="container container-50">
                     <h1>Contacts list</h1>
                     <table>
                         <tbody>

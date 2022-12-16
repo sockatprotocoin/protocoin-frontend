@@ -44,11 +44,11 @@ function Login() {
         <div className="container">
             <h2>Login</h2>
             <form method="post" onSubmit={handleSubmit}>
-                <label>Username:</label>
-                <input name="username" type="text" onChange={handleChange}/>
-                <label>Password:</label>
-                <input name="password" type="password" onChange={handleChange}/>
-                <input className='button confirm form-element' type="submit" value="Login" />
+                <label>Username:</label><br></br>
+                <input className="form-element" name="username" type="text" onChange={handleChange}/><br></br>
+                <label>Password:</label><br></br>
+                <input className="form-element" name="password" type="password" onChange={handleChange}/><br></br>
+                <input className='button login form-element' type="submit" value="Login" />
             </form>
         </div>
     )
