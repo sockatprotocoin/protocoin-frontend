@@ -32,9 +32,14 @@ function Sidebar() {
             <div className={sidebarOpened ? 'nav-menu active' : 'nav-menu'}>
                 <ul className='nav-menu-items'>
                     {loggedIn ? "" : 
+                    <div>
                         <li key="login" className='nav-item'>
                             <Link to="/login"><span>Login</span></Link>
                         </li> 
+                        <li key="register" className='nav-item'>
+                            <Link to="/register"><span>Register</span></Link>
+                        </li> 
+                    </div>
                     }
                     {SidebarData.map((item, index) => {
                         if (item.access === 'loggedIn' && !loggedIn) {

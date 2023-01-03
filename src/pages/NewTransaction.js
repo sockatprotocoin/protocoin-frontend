@@ -7,6 +7,7 @@ class NewTransaction extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            balance: 0,
             isFetching: true,
             contacts: [],
             userId: 1,
@@ -16,7 +17,8 @@ class NewTransaction extends Component {
     }
 
     componentDidMount() {
-        this.fetchContacts();
+        this.fetchContacts()
+        this.fetchBalance()
     }
 
     fetchContacts() {
@@ -34,6 +36,20 @@ class NewTransaction extends Component {
                 this.setState({ ...this.state, isFetching: false });
             })
     }
+
+
+    fetchBalance() {
+        this.setState({ ...this.state, isFetching: true });
+        this.api.getBalance()
+            .then(response => {
+                this.setState({...this.state, balance: response.data})
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({ ...this.state, isFetching: false });
+            })
+    }
+
 
     addTransaction = () => {
         this.setState({
@@ -117,6 +133,7 @@ class NewTransaction extends Component {
         if(!this.state.isFetching){
             return (
                 <div className="container">
+                    <h3>Balance available: {this.state.balance} </h3>
                     <h1>New Transaction</h1>
                     <form onSubmit={this.handleSubmit}>
                         <table>

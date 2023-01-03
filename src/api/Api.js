@@ -72,4 +72,8 @@ export default class Api {
     acceptInvitation = (invitationId) => {
         return this.init().get('invitation/' + invitationId + '/accept')
     }
+
+    getBalance = () => {
+        return this.init().get('user/balance')
+    }
 }
