@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Api from '../api/Api'
+import './NewTransaction.css'
 
 class NewTransaction extends Component {
     api = new Api();
@@ -133,7 +134,7 @@ class NewTransaction extends Component {
         if(!this.state.isFetching){
             return (
                 <div className="container">
-                    <h3>Balance available: {this.state.balance} </h3>
+                    <h1 className='balance'>Balance: {this.state.balance} </h1>
                     <h1>New Transaction</h1>
                     <form onSubmit={this.handleSubmit}>
                         <table>

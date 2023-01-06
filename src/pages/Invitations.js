@@ -19,7 +19,6 @@ class Invitation extends Component {
     fetchInvitations() {
         this.api.getInvitations()
             .then(response => {
-                console.log(response.data)
                 this.setState({ invitations: response.data, isFetching: false })
             })
             .catch(err => {

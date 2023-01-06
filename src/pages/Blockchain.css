@@ -1,11 +1,11 @@
-.blockchain {
+.blocklist {
     display: flex;
     flex-flow: row;
     flex-wrap: nowrap;
     overflow-x: auto;
 }
 
-.container {
+.container .blockchain {
     display: block;
 }
 
@@ -41,7 +41,7 @@
     visibility: visible;
 }
 
-h1 {
+h1.blockchain{
     padding-bottom: 0;
 }
 

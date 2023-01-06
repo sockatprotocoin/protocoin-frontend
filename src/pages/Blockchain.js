@@ -27,9 +27,9 @@ function Blockchain() {
 
     return (
         !isFetching ?
-        <div className="container" style={{maxWidth: sidebarOpened ? 'calc(100vw - 350px)' : '100%'}}>
-            <h1>Blockchain</h1>
-            <div className='blockchain'>
+        <div className="container blockchain" style={{maxWidth: sidebarOpened ? 'calc(100vw - 350px)' : '100%'}}>
+            <h1 className='blockchain'>Blockchain</h1>
+            <div className='blocklist'>
                 {blocks.map((block, blockIndex)  =>
                     <div key={blockIndex} className='block'>
                         <div className='blockHash tooltip highlight'>{block.blockHash}
