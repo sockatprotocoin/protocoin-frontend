@@ -5,6 +5,10 @@
     overflow-x: auto;
 }
 
+.container {
+    display: block;
+}
+
 .block {
     word-break: break-all;
     min-width: 400px;
