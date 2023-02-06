@@ -48,3 +48,38 @@ h1.blockchain{
 .highlight:hover {
     background-color: cornflowerblue;
 }
+
+.blockElement{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    border-color: #288FF6;
+    border-width: thin;
+    border-style: dashed;
+}
+
+.transactionElement{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+p.blockElementTitle{
+    color: #76B8F9;
+    margin: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.investigate {
+    background-color: var(--pink);
+    border-color: var(--pink);
+    color: white;
+    padding: 4px 6px 4px 6px;
+    font-size: 2em;
+    line-height: 70%;
+    margin-top: 1em;
+  }
+
+.blockComponent{
+    display: inline-block
+}
