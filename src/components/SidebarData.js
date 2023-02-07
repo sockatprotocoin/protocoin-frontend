@@ -5,6 +5,11 @@ export const SidebarData = [
         access: 'all'
     },
     {
+        title: 'Network',
+        path: '/network',
+        access: 'all'
+    },
+    {
         title: 'Contacts',
         path: '/contacts',
         access: 'loggedIn'

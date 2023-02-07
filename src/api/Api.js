@@ -52,6 +52,10 @@ export default class Api {
         return this.init().get("blockchain")
     }
 
+    getNetwork = () => {
+        return this.init().get("network")
+    }
+
     postTransaction = (fee, transactions) => {
         let transactionsValues = Object.values(transactions)
         return this.init().post('transaction', transactionsValues)

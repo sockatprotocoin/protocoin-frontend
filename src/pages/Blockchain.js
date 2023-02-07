@@ -12,7 +12,7 @@ function Blockchain() {
 
     useEffect(() => {
         fetchBlockchain()
-    })
+    }, [])
 
     function fetchBlockchain() {
         api.getBlockchain()
@@ -26,13 +26,11 @@ function Blockchain() {
             })
     }
 
-
-
     return (
         !isFetching ?
         <div className="container blockchain" style={{maxWidth: sidebarOpened ? 'calc(100vw - 350px)' : '100%'}}>
+            <button className='button action' style={{float: "right", fontSize: "1.2em"}} onClick={e=> mode === 'normal' ? setMode("investigate") : setMode("normal")  }>{mode === 'normal' ? 'DETAILED MODE' : 'BYTE MODE'} </button>
             <h1 className='blockchain'>Blockchain</h1>
-            <button className='investigate' onClick={e=> mode === 'normal' ? setMode("investigate") : setMode("normal")  }>{mode === 'normal' ? 'INVESTIGATE' : 'MINIMIZE'} </button>
             <div className='blocklist'>
                 {blocks.map((block, blockIndex)  =>
                     <div key={blockIndex} className='block'>
@@ -66,8 +64,8 @@ function Blockchain() {
                                     <div className='txid tooltip highlight'>{transaction.txId}
                                         <span className='tooltiptext'>transaction id</span>
                                     </div>
-                                    {transaction.transactionInputs.map((transactionInput,transactionInputIndex) =>
-                                        <div className={mode == 'investigate' ?'transactionInput transactionElement' : ''}>
+                                    {transaction.transactionInputs.map((transactionInput, transactionInputIndex) =>
+                                        <div key={transactionInputIndex} className={mode == 'investigate' ?'transactionInput transactionElement' : ''}>
                                             {mode == 'investigate' ? <div><p className='blockElementTitle'>TRANSACTION INPUT</p></div> : <div></div>}
 
                                             <div className='txid tooltip highlight'>{transactionInput.txid}

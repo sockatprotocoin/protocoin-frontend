@@ -105,15 +105,15 @@ class NewTransaction extends Component {
 
     getTransactionsInput = () => {
         return (
-            Object.entries(this.state.transactions).map((entry) => 
-                <tr>
+            Object.entries(this.state.transactions).map((entry, entryIndex) => 
+                <tr key={entryIndex}>
                     <td>
                         <select className='form-element'
                             value={this.state.transactions[entry[0]].receiverWalletAddress} 
                             onChange={(event) => this.updateTransactionReceiverWalletAddress(event, entry[0])}
                             >
-                            {this.state.contacts.map(contact =>
-                                <option style={{fontFamily: 'Noto Sans Mono, monospace'}} value={contact.address}>{contact.username}</option>
+                            {this.state.contacts.map((contact, contactIndex) =>
+                                <option key={contactIndex} style={{fontFamily: 'Noto Sans Mono, monospace'}} value={contact.address}>{contact.username}</option>
                             )}
                             </select>
                     </td>
@@ -156,7 +156,7 @@ class NewTransaction extends Component {
                             </tr>
                             <tr>
                                 <td>
-                                    <button className='button add form-element' type="button" onClick={this.addTransaction}>+</button>
+                                    <button className='button action form-element' type="button" onClick={this.addTransaction}>+</button>
                                 </td>
                                 <td></td>
                                 <td>

@@ -90,7 +90,7 @@ tr:last-child {
   color: white;
 }
 
-.add {
+.action {
   background-color: var(--pink);
   border-color: var(--pink);
   color: white;
