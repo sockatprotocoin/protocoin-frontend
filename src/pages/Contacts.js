@@ -6,8 +6,8 @@ function Contacts() {
     return (
         <>
             <ContactsList/>
-            <UserInviter/>
             <Invitations/>
+            <UserInviter/>
         </>
     )
 }

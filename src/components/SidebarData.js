@@ -15,8 +15,8 @@ export const SidebarData = [
         access: 'loggedIn'
     },
     {
-        title: 'New transaction',
-        path: '/transaction',
+        title: 'Transactions',
+        path: '/transactions',
         access: 'loggedIn'
     }
 ]

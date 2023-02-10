@@ -21,6 +21,7 @@ function Sidebar() {
 
     return (
         <>
+            <div className={sidebarOpened ? 'filler active app-name' : 'filler app-name'}>PROTOCOIN</div>
             <div className='header'>
                 <svg viewBox="0 0 100 80" width="40" height="25" onClick={toggleSidebar}>
                     <rect width="100" height="12" rx="8"></rect>

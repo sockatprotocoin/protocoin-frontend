@@ -44,7 +44,7 @@ class ContactsList extends Component {
                     <h1>Contacts list</h1>
                     <table>
                         <tbody>
-                            {this.state.contacts.map(contact =>
+                            {this.state.contacts.length > 0 ? this.state.contacts.map(contact =>
                                 <tr key={contact.id}>
                                     <td>
                                         {contact.username + " "}
@@ -56,7 +56,7 @@ class ContactsList extends Component {
                                         <button className='delete' onClick={(e) => deleteContact(e, contact.id)}>delete</button>
                                     </td>
                                 </tr>
-                            )}
+                            ) : "You have no contacts yet"}
                         </tbody>
                     </table>
                 </div>

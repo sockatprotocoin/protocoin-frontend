@@ -64,7 +64,7 @@ class UserInviter extends Component {
         return (
             <div className='container container-50'>
                 <h1>Invite user</h1>
-                <input className='form-element' onChange={this.search}></input>
+                <input className='form-element' onChange={this.search} placeholder="Start typing to search for users.."></input>
                 <table>
                     <tbody>
                         {this.state.searchedUsers.map(user =>
@@ -76,7 +76,7 @@ class UserInviter extends Component {
                                     {user.email}
                                 </td>
                                 <td>
-                                    <button className='add' onClick={(e) => this.inviteUser(e, user.id)}>+</button>
+                                    <button className='action' onClick={(e) => this.inviteUser(e, user.id)}>+</button>
                                 </td>
                             </tr>
                         )}

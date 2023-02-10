@@ -36,13 +36,13 @@ class Invitation extends Component {
             })
     }
 
-    render() {
-        return (
+    render() { 
+        return ( 
             <div className="container container-50">
                 <h1>Invitations</h1>
                 <table>
                     <tbody>
-                        {this.state.invitations.map(invitation => {
+                        { this.state.invitations.length > 0 ? this.state.invitations.map(invitation => {
                             const inviter = invitation.inviter
                             return (
                                 <tr key={inviter.id}>
@@ -53,14 +53,14 @@ class Invitation extends Component {
                                         {inviter.email}
                                     </td>
                                     <td>
-                                        <button className='add' onClick={(e) => this.acceptInvitation(e, invitation.id)}>✔</button>
+                                        <button className='action' onClick={(e) => this.acceptInvitation(e, invitation.id)}>✔</button>
                                     </td>
                                 </tr>
                             )
-                        })}
+                        }) : "You have no penidng invitations"}
                     </tbody>
                 </table>
-            </div>
+            </div> 
         )
     }
 }

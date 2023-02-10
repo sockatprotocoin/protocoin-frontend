@@ -1,3 +1,19 @@
+.filler {
+    padding-top: 10px;
+    width: 200px;
+    height: 100vh;
+    background-color: white;
+    position: fixed;
+    z-index: -1;
+    text-align: center;
+    left: -230px;
+}
+
+.filler.active {
+    left: -30px;
+    transition: 350ms;
+}
+
 .header {
     background-color: white;
     display: flex;

@@ -8,6 +8,7 @@ import './MainContent.css'
 import NewTransaction from '../pages/NewTransaction';
 import Login from '../pages/Login';
 import RegisterForm from '../pages/RegisterForm';
+import Transactions from '../pages/Transactions';
 
 function MainContent() {
     const sidebarOpened = useSelector((state) => state.sidebarOpened)
@@ -18,7 +19,7 @@ function MainContent() {
                 <Route path='/blockchain' element={<Blockchain />} />
                 <Route path='/network' element={<Network />} />
                 <Route path='/contacts' element={<Contacts />} />
-                <Route path='/transaction' element={<NewTransaction />} />
+                <Route path='/transactions' element={<Transactions />} />
                 <Route path='/login' element={<Login/>} />
                 <Route path='/register' element={<RegisterForm/>} />
             </Routes>
