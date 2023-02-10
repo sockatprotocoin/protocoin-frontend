@@ -44,13 +44,13 @@ class Invitation extends Component {
                     <table>
                         <tbody>
                             <tr key={invitation.inviter.id}>
-                                <td>
+                                <td className='form-element'>
                                     {invitation.inviter.username + " "}
                                 </td>
-                                <td>
+                                <td className='form-element'>
                                     {invitation.inviter.email}
                                 </td>
-                                <td>
+                                <td className='form-element'>
                                     <button className='action' onClick={(e) => this.acceptInvitation(e, invitation.id)}>✔</button>
                                 </td>
                             </tr>

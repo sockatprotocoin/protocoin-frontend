@@ -47,13 +47,13 @@ class ContactsList extends Component {
                                 <tbody>
                                     {this.state.contacts.map(contact =>
                                         <tr key={contact.id}>
-                                            <td>
+                                            <td className='form-element'>
                                                 {contact.username + " "}
                                             </td>
-                                            <td>
+                                            <td className='form-element'>
                                                 {contact.email}
                                             </td>
-                                            <td>
+                                            <td className='form-element'>
                                                 <button className='delete' onClick={(e) => deleteContact(e, contact.id)}>delete</button>
                                             </td>
                                         </tr>

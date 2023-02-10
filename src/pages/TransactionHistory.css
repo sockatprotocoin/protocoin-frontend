@@ -1,0 +1,23 @@
+.history-cell {
+    border-bottom: 1px solid var(--grey);
+    font-size: 1.2em;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.transaction-number {
+    float: left;
+    color: lightgrey;
+    font-weight: bolder;
+    font-size: 1.5em;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.income {
+    color: var(--green);
+}
+
+.outcome {
+    color: var(--delete);
+}

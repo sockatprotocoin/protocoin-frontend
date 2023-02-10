@@ -23,6 +23,10 @@ body {
   display: table;
 }
 
+.container:not(:last-child) {
+  margin-bottom: 20px;
+}
+
 .container-50 {
   /* max-width: calc(50% - 100px - 60px);
   min-width: calc(50% - 100px - 60px); */
