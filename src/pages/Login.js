@@ -42,7 +42,7 @@ function Login() {
 
     return(
         <div className="container">
-            <h2>Login</h2>
+            <h2>Log in</h2>
             <form method="post" onSubmit={handleSubmit}>
                 <label>Username:</label><br></br>
                 <input className="form-element" name="username" type="text" onChange={handleChange}/><br></br>

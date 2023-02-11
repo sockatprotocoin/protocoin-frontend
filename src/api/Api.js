@@ -37,7 +37,7 @@ export default class Api {
     }
 
     getUsersFiltered = (stringFilter) => {
-        return this.init().get("user?stringFilter=" + stringFilter)
+        return this.init().get("user/usersNotInContact?stringFilter=" + stringFilter)
     }
 
     getContacts = () => {
