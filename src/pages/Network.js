@@ -45,7 +45,7 @@ function Network({ size }) {
 
     const graphRef = useCallback((node) => {
         if (node) {
-            node.zoom(8);
+            node.zoom(6);
         }
     }, []);
 
