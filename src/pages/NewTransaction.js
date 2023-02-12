@@ -11,7 +11,6 @@ class NewTransaction extends Component {
             balance: 0,
             isFetching: true,
             contacts: [],
-            userId: 1,
             fee: 0,
             transactions : []
         };
@@ -28,8 +27,8 @@ class NewTransaction extends Component {
             .then(response => {
                 this.setState({
                     contacts: response.data,
-                    transactions: [{receiverWalletAddress: response.data[0].address}],
-                    isFetching: false 
+                    transactions: response.data.length > 0 ? [{receiverWalletAddress: response.data[0].address}] : [],
+                    isFetching: false
                 })
             })
             .catch(err => {
@@ -43,7 +42,7 @@ class NewTransaction extends Component {
         this.setState({ ...this.state, isFetching: true });
         this.api.getBalance()
             .then(response => {
-                this.setState({...this.state, balance: response.data})
+                this.setState({...this.state, balance: response.data, isFetching: false})
             })
             .catch(err => {
                 console.log(err);
@@ -131,7 +130,7 @@ class NewTransaction extends Component {
     }
 
     render() {
-        if(!this.state.isFetching){
+        if (!this.state.isFetching) {
             return (
                 <div className="container">
                     <h1 className='balance'>Balance: {this.state.balance} </h1>
