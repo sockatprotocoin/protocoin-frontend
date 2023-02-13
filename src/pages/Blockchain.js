@@ -34,15 +34,15 @@ function Blockchain() {
             <div className='blocklist'>
                 {blocks.map((block, blockIndex)  =>
                     <div key={blockIndex} className='block'>
-                        <div className={mode == 'investigate' ? 'blockHash blockElement' :'blockComponent'}>
-                        {mode == 'investigate' ? <div><p className='blockElementTitle'>BLOCK HASH </p></div> : <div></div>}
+                        <div className={mode === 'investigate' ? 'blockHash blockElement' :'blockComponent'}>
+                        {mode === 'investigate' ? <div><p className='blockElementTitle'>BLOCK HASH </p></div> : <div></div>}
                             <div className='blockHash tooltip highlight'>
                                 {block.blockHash}
                                 <span className='tooltiptext'>block hash</span>
                             </div>
                         </div>
-                        <div className={mode == 'investigate' ?'blockHeader blockElement': 'blockComponent'}>
-                        {mode == 'investigate' ? <div><p className='blockElementTitle'>BLOCK HEADER </p></div> : <div></div>}
+                        <div className={mode === 'investigate' ?'blockHeader blockElement': 'blockComponent'}>
+                        {mode === 'investigate' ? <div><p className='blockElementTitle'>BLOCK HEADER </p></div> : <div></div>}
                             <div className='prevBlockHash tooltip highlight'>
                                 {block.header.previousBlockHash}
                                 <span className='tooltiptext'>previous block hash</span>
@@ -57,16 +57,16 @@ function Blockchain() {
                                 <span className='tooltiptext'>nonce</span>
                             </div>
                        </div >
-                        <div className={mode == 'investigate' ? 'transactions' :'blockComponent'}>
+                        <div className={mode === 'investigate' ? 'transactions' :'blockComponent'}>
                             {block.blockTransactions.map((transaction, transactionIndex) =>
-                                <div key={transactionIndex} className={mode == 'investigate' ? 'transaction blockElement' : ''}>
-                                    {mode == 'investigate' ? <div><p className='blockElementTitle'>TRANSACTION</p></div> : <div></div>}
+                                <div key={transactionIndex} className={mode === 'investigate' ? 'transaction blockElement' : ''}>
+                                    {mode === 'investigate' ? <div><p className='blockElementTitle'>TRANSACTION</p></div> : <div></div>}
                                     <div className='txid tooltip highlight'>{transaction.txId}
                                         <span className='tooltiptext'>transaction id</span>
                                     </div>
                                     {transaction.transactionInputs.map((transactionInput, transactionInputIndex) =>
-                                        <div key={transactionInputIndex} className={mode == 'investigate' ?'transactionInput transactionElement' : ''}>
-                                            {mode == 'investigate' ? <div><p className='blockElementTitle'>TRANSACTION INPUT</p></div> : <div></div>}
+                                        <div key={transactionInputIndex} className={mode === 'investigate' ?'transactionInput transactionElement' : ''}>
+                                            {mode === 'investigate' ? <div><p className='blockElementTitle'>TRANSACTION INPUT</p></div> : <div></div>}
 
                                             <div className='txid tooltip highlight'>{transactionInput.txid}
                                                 <span className='tooltiptext'>transaction id for input</span>
@@ -80,10 +80,10 @@ function Blockchain() {
                                         </div>
                                     )}
                                     {transaction.transactionOutputs.map((transactionOutput, outputIndex) =>
-                                        <div key={outputIndex} className={mode == 'investigate' ?'transactionOutput transactionElement':''}>
-                                            {mode == 'investigate' ? <div><p className='blockElementTitle'>TRANSACTION OUTPUT</p></div> : <div></div>}
+                                        <div key={outputIndex} className={mode === 'investigate' ?'transactionOutput transactionElement':''}>
+                                            {mode === 'investigate' ? <div><p className='blockElementTitle'>TRANSACTION OUTPUT</p></div> : <div></div>}
                                             <div className='amount tooltip highlight'>{transactionOutput.amount}
-                                                <span className='tooltiptext'>amount: {parseInt(transactionOutput.amount, 16) / 100000000}🥫</span>
+                                                <span className='tooltiptext'>amount: {parseInt(transactionOutput.amount, 16) / 100000000}</span>
                                             </div>
                                             <div className='scriptSize tooltip highlight'>{transactionOutput.scriptSize}
                                                 <span className='tooltiptext'>scriptSize</span>

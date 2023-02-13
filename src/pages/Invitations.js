@@ -40,23 +40,25 @@ class Invitation extends Component {
         return ( 
             <div className="container container-50">
                 <h1>Invitations</h1>
-                {this.state.invitations.length > 0 ? this.state.invitations.map(invitation => {
+                {this.state.invitations.length > 0 ?
                     <table>
                         <tbody>
-                            <tr key={invitation.inviter.id}>
-                                <td className='form-element'>
-                                    {invitation.inviter.username + " "}
-                                </td>
-                                <td className='form-element'>
-                                    {invitation.inviter.email}
-                                </td>
-                                <td className='form-element'>
-                                    <button className='action' onClick={(e) => this.acceptInvitation(e, invitation.id)}>✔</button>
-                                </td>
-                            </tr>
+                            {this.state.invitations.map(invitation => 
+                                <tr key={invitation.inviter.id}>
+                                    <td className='form-element'>
+                                        {invitation.inviter.username + " "}
+                                    </td>
+                                    <td className='form-element'>
+                                        {invitation.inviter.email}
+                                    </td>
+                                    <td className='form-element'>
+                                        <button className='action' onClick={(e) => this.acceptInvitation(e, invitation.id)}>✔</button>
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
-                }) : "You have no penidng invitations" }
+                : "You have no penidng invitations"}
             </div> 
         )
     }

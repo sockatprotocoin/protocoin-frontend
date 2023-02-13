@@ -69,13 +69,13 @@ class UserInviter extends Component {
                     <tbody>
                         {this.state.searchedUsers.map(user =>
                             <tr key={user.id}>
-                                <td>
+                                <td className='form-element'>
                                     {user.username + " "}
                                 </td>
-                                <td>
+                                <td className='form-element'>
                                     {user.email}
                                 </td>
-                                <td>
+                                <td className='form-element'>
                                     <button className='action' onClick={(e) => this.inviteUser(e, user.id)}>+</button>
                                 </td>
                             </tr>
